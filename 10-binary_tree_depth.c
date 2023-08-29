@@ -7,8 +7,8 @@
  * @tree: the pointer to the root node
  * Return: the depth |E|.
  * E = the edge set on the path v0,..., vk where:
- * 		v0 = the root node
- * 		vk = the target node
+ *   v0 = the root node
+ *   vk = the target node
  **/
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
