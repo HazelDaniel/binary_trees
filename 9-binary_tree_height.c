@@ -27,6 +27,12 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	return (bin_tree_height(tree) - 1);
 }
 
+/**
+ * bin_tree_height - a procedure to generate the
+ * height of the binary tree for the main function
+ * @tree: the pointer to the root node of the binary Tree
+ * Return: height
+ **/
 size_t bin_tree_height(const binary_tree_t *tree)
 {
 	size_t l_height = 0, r_height = 0;
