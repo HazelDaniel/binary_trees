@@ -69,6 +69,7 @@ int binary_tree_balance(const binary_tree_t *tree)
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int res_bool;
+
 	res_bool = bin_tree_is_perfect(tree, 0);
 	(void)bin_tree_is_perfect(NULL, 1);
 	return (res_bool);
@@ -78,6 +79,8 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
  * bin_tree_is_perfect - a function that returns
  * whether a binary tree is perfect or not
  * @tree: the pointer to the root node of the binary
+ * @reset: this is to add state to the function. an augmentation
+ * added to provide correct output in an edge-case
  * tree
  * description: one way to find out is to
  *             add all the total balance factors of
@@ -87,7 +90,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 int bin_tree_is_perfect(const binary_tree_t *tree, int reset)
 {
 	int is_perfect_here = 1;
-	static int count = 0;
+	static int count;
 
 	if (reset)
 	{
@@ -99,22 +102,18 @@ int bin_tree_is_perfect(const binary_tree_t *tree, int reset)
 	{
 		if (!count)
 			return (0);
-		else
-		{
-			return (1);
-		}
+		return (1);
 	}
 
 	if (binary_tree_balance(tree) == 0)
-			is_perfect_here = 1;
+		is_perfect_here = 1;
 	else
 		is_perfect_here = 0;
 
 
 	count++;
-	is_perfect_here = (is_perfect_here &&
-		bin_tree_is_perfect(tree->left, 0) &&
-		bin_tree_is_perfect(tree->right, 0));
+	is_perfect_here = (is_perfect_here && bin_tree_is_perfect(tree->left, 0)
+	&& bin_tree_is_perfect(tree->right, 0));
 
 	return (is_perfect_here);
 }
