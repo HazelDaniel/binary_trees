@@ -23,7 +23,7 @@ int binary_tree_balance(const binary_tree_t *tree)
 }
 
 /**
- * bin_tree_height - a procedure to generate the
+ * bin_T_height - a procedure to generate the
  * height of the binary tree for the main function
  * @tree: the pointer to the root node of the binary Tree
  * Return: height
