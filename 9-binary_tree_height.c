@@ -24,6 +24,9 @@ size_t max(size_t a, size_t b)
  **/
 size_t binary_tree_height(const binary_tree_t *tree)
 {
+	if (!tree)
+		return (0);
+
 	return (bin_tree_height(tree) - 1);
 }
 
