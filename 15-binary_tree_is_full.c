@@ -52,9 +52,13 @@ int binary_tree_is_full(const binary_tree_t *tree)
 		return (0);
 	}
 	if (!has_even_children(tree))
+	{
 		is_full_here = 1;
-	is_full_here += binary_tree_is_full(tree->left);
-	is_full_here += binary_tree_is_full(tree->right);
-
+	}
+	else
+	{
+		is_full_here += binary_tree_is_full(tree->left);
+		is_full_here += binary_tree_is_full(tree->right);
+	}
 	return (is_full_here == 0);
 }
