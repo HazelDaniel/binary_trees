@@ -4,27 +4,57 @@
 
 
 /**
+ * is_leaf - a function that returns whether
+ * a node is a leaf
+ * @node: the node to check against
+ * Return: boolean
+ **/
+int is_leaf(const binary_tree_t *node)
+{
+	if (!node)
+		return (0);
+	return ((!(node->left || node->right)));
+}
+
+/**
+ * has_even_children - a function that returns whether
+ * a node has two or zero children
+ * @node: the node to check against
+ * Return: boolean
+ **/
+int has_even_children(const binary_tree_t *node)
+{
+	if (!node)
+		return (0);
+	return ((node->left && node->right) || !(node->left || node->right));
+}
+
+/**
  * binary_tree_is_full - a function that returns
  * whether a binary tree is full or not
  * @tree: the pointer to the root node of the binary
  * tree
- * description: two main logics you could use are
- *             1. check if all internal nodes in the
- *             tree have two children
- *             2. check if the sum of the balance factors
- *             of all nodes in the tree equals 0.
- *             let's go with 2 shall we.
+ * description: one way to find out is to
+ *             check if all nodes in the
+ *             tree have two or zero children
  * Return: void
  **/
 int binary_tree_is_full(const binary_tree_t *tree)
 {
-	int balance_total = 0;
+	int is_full_here = 0;
 
 	if (!tree)
+		return (1);
+	if (is_leaf(tree))
+	{
+		if (!tree->parent)
+			return (1);
 		return (0);
-	balance_total += binary_tree_balance(tree->left);
-	balance_total += binary_tree_balance(tree->right);
-	balance_total += (binary_tree_balance(tree));
+	}
+	if (!has_even_children(tree))
+		is_full_here = 1;
+	is_full_here += binary_tree_is_full(tree->left);
+	is_full_here += binary_tree_is_full(tree->right);
 
-	return (balance_total == 0);
+	return (is_full_here == 0);
 }
