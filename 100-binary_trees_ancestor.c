@@ -43,7 +43,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 }
 
 /**
- * binary_tree_depth - a function that returns the depth
+ * bin_tree_depth - a function that returns the depth
  * of a node in a binary tree
  * @node: the given node
  * Return: the depth
