@@ -38,6 +38,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	while (tmp1 != tmp2)
 		tmp1 = tmp1->parent, tmp2 = tmp2->parent;
 
+
 	return (tmp1);
 }
 
