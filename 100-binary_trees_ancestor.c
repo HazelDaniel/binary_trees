@@ -41,7 +41,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 
 	return (tmp1);
 }
-#include "b_tree_list.h"
+#include "b_tree_list.hpp"
 
 /**
  * bin_tree_depth - a function that returns the depth
