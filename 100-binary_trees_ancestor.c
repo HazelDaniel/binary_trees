@@ -1,4 +1,5 @@
 #include "binary_trees.h"
+#include "b_tree_list.h"
 
 int bin_tree_depth(const binary_tree_t *tree);
 
