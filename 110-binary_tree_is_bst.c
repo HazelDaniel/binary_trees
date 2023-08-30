@@ -6,18 +6,24 @@
  * a sut-tree of a binary tree
  * @root: the root of the sub-tree
  * @max_addr: pointer to the value to be updated
- * Return: void
+ * Return: whether there are duplicates or not
  **/
-void get_max(binary_tree_t *root, int *max_addr)
+int get_max(binary_tree_t *root, int *max_addr)
 {
+	int bool = 1;
+
 	if (!root)
-		return;
+		return (1);
 
 	if (root->n > *max_addr)
 		*max_addr = root->n;
+	if (root->n == *max_addr)
+		return (0);
 
-	get_max(root->right, max_addr);
-	get_max(root->left, max_addr);
+	bool = bool && get_max(root->right, max_addr);
+	bool = bool && get_max(root->left, max_addr);
+
+	return (bool);
 }
 
 /**
@@ -25,18 +31,24 @@ void get_max(binary_tree_t *root, int *max_addr)
  * a sut-tree of a binary tree
  * @root: the root of the sub-tree
  * @min_addr: pointer to the value to be updated
- * Return: void
+ * Return: whether there are duplicates or not
  **/
-void get_min(binary_tree_t *root, int *min_addr)
+int get_min(binary_tree_t *root, int *min_addr)
 {
+	int bool = 1;
+
 	if (!root)
-		return;
+		return (1);
 
 	if (root->n < *min_addr)
 		*min_addr = root->n;
+	if (root->n == *min_addr)
+		return (0);
 
-	get_min(root->right, min_addr);
-	get_min(root->left, min_addr);
+	bool = bool && get_min(root->right, min_addr);
+	bool = bool && get_min(root->left, min_addr);
+
+	return (bool);
 }
 
 /**
@@ -48,8 +60,8 @@ void get_min(binary_tree_t *root, int *min_addr)
  **/
 int is_bst(binary_tree_t *root)
 {
-	int maximum = 0;
-	int minimum = 0;
+	int maximum = 0, minimum = 0;
+	int bool = 1;
 
 	if (!root)
 		return (0);
@@ -58,14 +70,14 @@ int is_bst(binary_tree_t *root)
 	maximum = root->n;
 	minimum = root->n;
 
-	get_max(root->left, &maximum);
+	bool = bool && get_max(root->left, &maximum);
 	if (maximum > root->n)
 		return (0);
-	get_min(root->right, &minimum);
+	bool = bool && get_min(root->right, &minimum);
 	if (minimum < root->n)
 		return (0);
 
-	return (1);
+	return (bool);
 }
 
 /**
