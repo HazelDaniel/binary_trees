@@ -22,33 +22,23 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	if (depth1 == 0 || depth2 == 0)
 		return (NULL);
 
-
 	tmp1 = (binary_tree_t *)first;
 	tmp2 = (binary_tree_t *)second;
 	if (depth1 > depth2)
 	{
 		while (depth1 != depth2)
-		{
-			tmp1 = tmp1->parent;
-			depth1--;
-		}
+			tmp1 = tmp1->parent, depth1--;
 	}
 	else if (depth1 < depth2)
 	{
 		while (depth1 != depth2)
-		{
-			tmp2 = tmp2->parent;
-			depth2--;
-		}
+			tmp2 = tmp2->parent, depth2--;
 	}
 
 	while (tmp1 != tmp2)
-	{
-		tmp1 = tmp1->parent;
-		tmp2 = tmp2->parent;
-	}
+		tmp1 = tmp1->parent, tmp2 = tmp2->parent;
 
-	return ((binary_tree_t *)tmp1);
+	return (tmp1);
 }
 
 /**
