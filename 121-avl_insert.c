@@ -10,7 +10,7 @@
  */
 void balance_avl(avl_t **tree, int value)
 {
-	int isBalanced;
+	int isBalanced = 0;
 
 	isBalanced = binary_tree_balance(*tree);
 	if (isBalanced > 1 && (*tree)->left->n > value)
