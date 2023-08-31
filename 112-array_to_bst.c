@@ -119,10 +119,18 @@ bst_t *arr_to_bst(int *arr, size_t low, size_t high, bst_t *tree, size_t size)
 
 	tree->left = arr_to_bst(arr, low, mid, tree->left, size);
 	if (tree->left)
+	{
 		tree->left->parent = tree;
+		if (tree->left->n >= tree->n)
+			return (0);
+	}
 	tree->right = arr_to_bst(arr, mid + 1, high, tree->right, size);
 	if (tree->right)
+	{
 		tree->right->parent = tree;
+		if (tree->right->n <= tree->n)
+			return (0);
+	}
 
 
 	return (tree);
