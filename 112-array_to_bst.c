@@ -58,7 +58,7 @@ void hoare_sort(int *array, int low, int high)
 	if (low < high)
 	{
 		pivot_index = part_hoare(array, low, high);
-		hoare_sort(array, low, pivot_index);
+		hoare_sort(array, low, pivot_index - 1);
 		hoare_sort(array, pivot_index + 1, high);
 	}
 }
@@ -87,9 +87,20 @@ void quick_sort_hoare(int *array, size_t size)
  **/
 bst_t *array_to_bst(int *array, size_t size)
 {
+	int *tmp_array = malloc(size * sizeof(int)), i;
+	bst_t *res_tree = NULL;
 
-	quick_sort_hoare(array, size);
-	return (arr_to_bst(array, 0, size - 1, NULL, size));
+	if (!tmp_array)
+		return (NULL);
+	for (i = 0; i < (int)size; i++)
+		tmp_array[i] = array[i];
+
+	quick_sort_hoare(tmp_array, size);
+	res_tree = (arr_to_bst(tmp_array, 0, size - 1, NULL, size));
+
+	free(tmp_array);
+
+	return (res_tree);
 }
 
 /**
