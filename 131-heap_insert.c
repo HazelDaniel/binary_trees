@@ -2,7 +2,7 @@
 
 
 void max_heapify(binary_tree_t *root, binary_tree_t *curr_root);
-void insert_to_max_heap(heap_t **root, heap_t *tree_queue[1000], int value);
+heap_t *insert_to_max_heap(heap_t **root, heap_t *tree_queue[1000], int value);
 /**
  * is_leaf - a function that returns whether
  * a node is a leaf
@@ -28,8 +28,7 @@ heap_t *heap_insert(heap_t **root, int value)
 {
 	heap_t *heap_queue[1000];
 
-	insert_to_max_heap(root, heap_queue, value);
-	return (*root);
+	return (insert_to_max_heap(root, heap_queue, value));
 }
 
 /**
@@ -82,9 +81,9 @@ void max_heapify(binary_tree_t *root, binary_tree_t *curr_root)
  * @tree_queue: the list of nodes collected
  * during a level-order traversal.
  * @value: the value of the node to be inserted
- * Return: void
+ * Return: the newly inserted node
  **/
-void insert_to_max_heap(heap_t **root, heap_t *tree_queue[1000], int value)
+heap_t *insert_to_max_heap(heap_t **root, heap_t *tree_queue[1000], int value)
 {
 	int front = 0, rear = 0, length = 0, i = 0;
 	heap_t *current, *new;
@@ -93,7 +92,7 @@ void insert_to_max_heap(heap_t **root, heap_t *tree_queue[1000], int value)
 	{
 		new = binary_tree_node(NULL, value);
 		*root = new;
-		return;
+		return (new);
 	}
 	tree_queue[rear++] = *root;
 	while (front < rear)
@@ -114,10 +113,12 @@ void insert_to_max_heap(heap_t **root, heap_t *tree_queue[1000], int value)
 		if (current->left && !current->right)
 		{
 			current->right = new, new->parent = current;
+			break;
 		}
 		else if (is_leaf(current))
 		{
 			current->left = new, new->parent = current;
+			break;
 		}
 	}
 	for (i = length - 1; i >= 0; i--)
@@ -125,4 +126,5 @@ void insert_to_max_heap(heap_t **root, heap_t *tree_queue[1000], int value)
 		current = tree_queue[i];
 		max_heapify(*root, current);
 	}
+	return (new);
 }
