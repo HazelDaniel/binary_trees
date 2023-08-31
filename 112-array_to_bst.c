@@ -95,10 +95,11 @@ bst_t *array_to_bst(int *array, size_t size)
 /**
  * arr_to_bst - a function that converts an array
  * into a binary search tree
- * @array: the input array
+ * @arr: the input array
  * @low: the starting index of the operation
  * @high: the stoping index of the operation
  * @tree: the pointer to the last root node
+ * @size: the number of nodes in the tree
  * in the recursion tree
  * Return: the pointer to the root node of
  * the binary search tree
