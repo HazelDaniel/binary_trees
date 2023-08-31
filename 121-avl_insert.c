@@ -34,7 +34,8 @@ static size_t bin_T_height(const binary_tree_t *tree)
  */
 int balance(const binary_tree_t *tree)
 {
-	return (tree != NULL ? bin_T_height(tree->left) - bin_T_height(tree->right) : 0);
+	return (tree != NULL ? bin_T_height(tree->left)
+	- bin_T_height(tree->right) : 0);
 }
 
 /**
