@@ -3,7 +3,7 @@
 
 /**
  * get_max - a function that gets the maximum value in
- * a sut-tree of a binary tree
+ * a sub-tree of a binary tree
  * @root: the root of the sub-tree
  * @max_addr: pointer to the value to be updated
  * Return: whether there are duplicates or not
