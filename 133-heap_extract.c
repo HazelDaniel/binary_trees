@@ -36,10 +36,10 @@ static size_t bin_T_height(const binary_tree_t *tree)
 }
 
 /**
- * tree_size_h - measures the sum of heights of a binary tree
- * @tree: pointer to the root node of the tree to measure the height
- *
- * Return: Height or 0 if tree is NULL
+ * tree_size_h - this function returns the sum of heights
+ * of all nodes in a tree
+ * @tree: the pointer to the root node of the tree
+ * Return: the total height
  */
 size_t tree_size_h(const binary_tree_t *tree)
 {
@@ -59,14 +59,14 @@ size_t tree_size_h(const binary_tree_t *tree)
 }
 
 /**
- * _preorder - goes through a binary tree using pre-order traversal
+ * traverse_preorder - goes through a binary
+ * tree using pre-order traversal
  * @tree: pointer to the root node of the tree to traverse
  * @node: will be last note in traverse
  * @height: height of tree
- *
- * Return: No Return
+ * Return: void
  */
-void _preorder(heap_t *tree, heap_t **node, size_t height)
+void traverse_preorder(heap_t *tree, heap_t **node, size_t height)
 {
 	if (!tree)
 		return;
@@ -75,8 +75,8 @@ void _preorder(heap_t *tree, heap_t **node, size_t height)
 		*node = tree;
 	height--;
 
-	_preorder(tree->left, node, height);
-	_preorder(tree->right, node, height);
+	traverse_preorder(tree->left, node, height);
+	traverse_preorder(tree->right, node, height);
 }
 
 /**
@@ -137,7 +137,7 @@ int heap_extract(heap_t **root)
 		return (value);
 	}
 
-	_preorder(heap_r, &node, bin_T_height(heap_r));
+	traverse_preorder(heap_r, &node, bin_T_height(heap_r));
 
 	heap_r->n = node->n;
 	if (node->parent->right)
