@@ -3,8 +3,7 @@
 /**
  * array_to_avl - a function that converts an array to
  * an avl tree
- * @array: the array to convert
- * @size: size of array
+ * @array: the array to convert @size: size of array
  * Return: the avl tree converted
  */
 avl_t *array_to_avl(int *array, size_t size)
