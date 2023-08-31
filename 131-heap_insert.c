@@ -1,4 +1,5 @@
 #include "binary_trees.h"
+#include "0-binary_tree_node.c"
 
 
 void max_heapify(binary_tree_t *root, binary_tree_t *curr_root);
@@ -62,6 +63,7 @@ void max_heapify(binary_tree_t *root, binary_tree_t *curr_root)
 		max_heapify(root, largest);
 	}
 }
+
 /*
  * NOTES:
  * traverse the tree in a level-order.
