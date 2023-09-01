@@ -44,7 +44,7 @@ int heap_extract(heap_t **root)
 		else
 			sentinel->parent->left = NULL;
 	}
-	free(sentinel);
+	binary_tree_delete(sentinel);
 
 	return (value);
 }
