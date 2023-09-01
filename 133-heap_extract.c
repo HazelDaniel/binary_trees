@@ -14,15 +14,13 @@ void max_heapify(binary_tree_t *root, binary_tree_t *curr_root);
  **/
 int heap_extract(heap_t **root)
 {
-	int value, front = 0, rear = 0, length = 0;
+	int value, front = 0, rear = 0, length = 0, tmp;
 	heap_t *current = NULL, *tree_queue[1000], *sentinel;
 
 	if (!root || !*root)
 		return (0);
 
 	value = (*root)->n;
-	(*root)->n = INT_MIN;
-	max_heapify(*root, *root);
 	tree_queue[rear++] = *root;
 	while (front < rear)
 	{
@@ -34,8 +32,11 @@ int heap_extract(heap_t **root)
 		length++;
 	}
 	sentinel = tree_queue[length - 1];
-	if (sentinel->n != INT_MIN)
-		return (value);
+	tmp = sentinel->n;
+	sentinel->n = value;
+	((*root)->n) = tmp;
+	max_heapify(*root, *root);
+
 	if (sentinel->parent)
 	{
 		if (sentinel == sentinel->parent->right)
@@ -43,7 +44,7 @@ int heap_extract(heap_t **root)
 		else
 			sentinel->parent->left = NULL;
 	}
-	binary_tree_delete(tree_queue[length - 1]);
+	free(sentinel);
 
 	return (value);
 }
